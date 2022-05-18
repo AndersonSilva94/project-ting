@@ -14,6 +14,11 @@ Lógica a se pensar:
 3 - Para adicionar um novo valor na lista, usar o append()
 4 - O dado há mais tempo na fila é o primeiro que entrou, para removê-lo
     utilizar pop() passando o índice que será removido
+5 - Para retornar o elemento filtrado é necessário verificar se o índice
+    passado é válido, ou seja, se ele é inteiro e é maior que 0 e menor que
+    o tamanho da lista. Caso não seja retornar o IndexError
+    Do contrário, retornar o elemento que está na posição passada por
+    parâmetro
 """
 
 
@@ -31,4 +36,6 @@ class Queue:
         return self.line.pop(0)
 
     def search(self, index):
-        """Aqui irá sua implementação"""
+        if index < 0 or index > len(self.line):
+            raise IndexError
+        return self.line[index]
