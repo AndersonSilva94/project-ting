@@ -11,6 +11,11 @@ Requisito 2: Passos a se seguir:
 Lógica a se pensar:
 1 - Verificar primeiro se o arquivo termina com formato txt, caso não
     retornar erro na stderr com 'Formato inválido'
+2 - Fazer a leitura do arquivo, convertando cada linha em um valor de lista
+3 - Cada valor da lista é obtido separando o texto onde a linha quebra.
+    Para isso, usar o split('\n')
+4 - Caso não exista um arquivo, fazer um except de FileNotFoundError
+    retornando a mensagem 'Arquivo {path_file} não encontrado' no terminal
 """
 import sys
 
@@ -18,3 +23,9 @@ import sys
 def txt_importer(path_file):
     if not path_file.endswith('txt'):
         return sys.stderr.write('Formato inválido\n')
+    try:
+        with open(path_file, mode="r") as data:
+            list_data = data.read().split('\n')
+            return list_data
+    except FileNotFoundError:
+        return sys.stderr.write(f'Arquivo {path_file} não encontrado\n')
