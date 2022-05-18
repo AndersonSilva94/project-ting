@@ -12,6 +12,8 @@ Lógica a se pensar:
 1 - Criar uma lista como atributo da classe e armazenar os valores da fila
 2 - Verificar seu tamanho com len(list)
 3 - Para adicionar um novo valor na lista, usar o append()
+4 - O dado há mais tempo na fila é o primeiro que entrou, para removê-lo
+    utilizar pop() passando o índice que será removido
 """
 
 
@@ -26,7 +28,7 @@ class Queue:
         return self.line.append(value)
 
     def dequeue(self):
-        """Aqui irá sua implementação"""
+        return self.line.pop(0)
 
     def search(self, index):
         """Aqui irá sua implementação"""
