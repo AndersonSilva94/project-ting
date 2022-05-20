@@ -36,6 +36,19 @@ Lógica a se pensar:
     caminho do arquivo como propriedade (já que queremos remover o objeto pelo
     arquivo)
 3 - Retornar no terminal via stdout
+
+Requisito 5: Passos a se seguir:
+1 - O método recebe um parâmetro que é a posição (index), e a instância que
+    retorna uma lista, e verifica se a posição existe na lista
+2 - Caso não exista, retornar no terminal via stderr 'Posição inválida'
+3 - Caso exista, imprimir o objeto no terminal
+
+Lógica a se pensar:
+1 - Fazer um try except onde a posição é passada como parâmetro do método
+    search da instância
+2 - Caso o retorno seja válido exibir o objeto em forma de string no terminal
+3 - Caso seja não válido, o except recebe o IndexError e retorna a mensagem
+    'Posição inválida' no terminal
 """
 from .file_management import txt_importer
 import sys
@@ -64,4 +77,8 @@ def remove(instance):
 
 
 def file_metadata(instance, position):
-    """Aqui irá sua implementação"""
+    try:
+        position_valid = instance.search(position)
+        sys.stdout.write(str(position_valid))
+    except IndexError:
+        sys.stderr.write("Posição inválida\n")
