@@ -22,6 +22,16 @@ Lógica a se pensar:
 4 - Crior o objeto que vai ter a string com os dados formatados.
 5 - Adicionar essa string no método enqueue da instância, para adionar à lista
 6 - Imprimir no terminal usando o stdout
+
+Requisito 4: Passos a se seguir:
+1 - A função recebe como parâmetro a fila criada no requisito 1
+2 - Caso não existam arquivos na fila, retornar via stdout 'Não há elementos'
+3 - Caso tenha sucesso, emitir via stdout:
+    'Arquivo {path_file} removido com sucesso'
+
+Lógica a se pensar:
+1 - Veririficar se o tamanho da lista é igual a 0, se for retornar a mensagem
+    "Não há elementos"
 """
 from .file_management import txt_importer
 import sys
@@ -42,7 +52,9 @@ def process(path_file, instance):
 
 
 def remove(instance):
-    """Aqui irá sua implementação"""
+    length_list = instance.__len__()
+    if length_list == 0:
+        return sys.stdout.write("Não há elementos\n")
 
 
 def file_metadata(instance, position):
