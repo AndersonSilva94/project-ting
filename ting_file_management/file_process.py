@@ -32,6 +32,10 @@ Requisito 4: Passos a se seguir:
 Lógica a se pensar:
 1 - Veririficar se o tamanho da lista é igual a 0, se for retornar a mensagem
     "Não há elementos"
+2 - Chamar o método que remove o arquivo vindo da instância, passando o
+    caminho do arquivo como propriedade (já que queremos remover o objeto pelo
+    arquivo)
+3 - Retornar no terminal via stdout
 """
 from .file_management import txt_importer
 import sys
@@ -55,6 +59,8 @@ def remove(instance):
     length_list = instance.__len__()
     if length_list == 0:
         return sys.stdout.write("Não há elementos\n")
+    path_file = instance.dequeue()["nome_do_arquivo"]
+    sys.stdout.write(f"Arquivo {path_file} removido com sucesso\n")
 
 
 def file_metadata(instance, position):
