@@ -30,6 +30,15 @@ Lógica a se pensar:
 4 - Caso não seja encontrado nenhum texto com a palavra, retornar lista vazia
 5 - Caso tenha dados, retornar no formato pedido na questão, em forma de
     lista
+
+Requisito 7: Passos a se seguir:
+1 - O requisito segue os mesmos passos do anterior, a diferença existe
+    na resposta das ocorrências, que além da linha encontrada, retorna também
+    o texto presente nele
+
+Lógica a se pensar:
+1 - Ao verificar se a palavra está presente no texto, adicionar junto com o
+    o valor da linha, o texto em si também
 """
 
 
@@ -55,4 +64,25 @@ def exists_word(word, instance):
 
 
 def search_by_word(word, instance):
-    """Aqui irá sua implementação"""
+    list_result = list()
+    ocurrencies = list()
+    word_converted = word.lower()
+    for element in instance.line:
+        line_value = 0
+        for text in element['linhas_do_arquivo']:
+            line_value += 1
+            if word_converted in text.lower():
+                line_and_text = {
+                    "linha": line_value,
+                    "conteudo": text
+                }
+                ocurrencies.append(line_and_text)
+        if len(ocurrencies) == 0:
+            return ocurrencies
+        response = {
+            "palavra": word.lower(),
+            "arquivo": element['nome_do_arquivo'],
+            "ocorrencias": ocurrencies
+        }
+        list_result.append(response)
+    return list_result
